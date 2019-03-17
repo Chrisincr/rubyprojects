@@ -1,0 +1,27 @@
+<div><span>Your Gold:</span> <div> your gold here</div></div>
+
+
+<div>
+    <h1>Farm</h1>
+    <p>(earns 10-20 gold)</p>
+    <%= form_tag('/process', method: "post") do %>
+        <input name="form_name" type="hidden" value="farm" />
+        <%= submit_tag("Find Gold!") %>
+    <% end %>
+</div>
+<div>
+    <h1>Cave</h1>
+    <p>(earns 5-10 gold)</p>
+    <%= form_tag('/process', method: "post") do %>
+        <input name="form_name" type="hidden" value="cave" />
+        <%= submit_tag("Find Gold!") %>
+    <% end %>
+</div>
+<div>
+    <h1>Casino</h1>
+    <p>(earns 0-50 gold)</p>
+    <%= form_tag('/process', method: "post") do %>
+        <input name="form_name" type="hidden" value="casino" />
+        <%= submit_tag("Find Gold!") %>
+    <% end %>
+</div>
