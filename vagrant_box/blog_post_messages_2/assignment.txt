@@ -1,0 +1,25 @@
+rails g model Comment comment:text user:references commentable:references{polymorphic}
+
+rails db:migrate
+
+rails c
+
+user = User.find(1)
+blog = Blog.first
+com = Comment.create(comment:'first',user:user,commentable:blog)
+
+
+class User < ApplicationRecord
+    has_many :messages
+    has_many :posts
+    has_many :blogs, through: :posts
+    has_many :owners
+    has_many :blogs, through: :owners
+    has_many :comments_about_me, as: :commentable, class_name: 'Comment'
+    has_many :my_comments, class_name: 'Comment'
+end
+
+class Comment < ApplicationRecord
+  belongs_to :user
+  belongs_to :commentable, polymorphic: true
+end

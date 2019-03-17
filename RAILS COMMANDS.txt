@@ -1,0 +1,48 @@
+rails g model User first_name:string last_name:string email:string password:string age:integer description:text student:references
+
+rake db:migrate:status
+
+
+
+
+class Something
+  has_one :address
+  belongs_to :user
+  has_many :signups
+  has_many :messages, through: :signups
+end
+
+class User < ApplicationRecord
+    has_many :messages
+    has_many :posts
+    has_many :blogs, through: :posts
+    has_many :owners
+    has_many :blogs, through: :owners
+    has_many :comments_about_me, as: :commentable, class_name: 'Comment'
+    has_many :my_comments, class_name: 'Comment'
+end
+
+class Comment < ApplicationRecord
+  belongs_to :user
+  belongs_to :commentable, polymorphic: true
+end
+
+gem 'rails-footnotes', '>= 4.0.0', '<5'
+rails generate rails_footnotes:install
+
+/config/routes.rb
+get "products" => "products#index"
+get "products/new" => "products#new"
+post "products" => "products#create"
+get "products/:id" => "products#show"
+get "products/:id/edit" => "products#edit"
+patch "products/:id" => "products#update"
+delete "products/:id" => "products#destroy"
+
+resources :products
+
+
+rails generate controller <ControllerName>
+Example: rails generate controller Users
+
+rails g controller <ControllerName> <methods space separated>
