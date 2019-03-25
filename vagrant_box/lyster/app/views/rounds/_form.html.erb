@@ -1,0 +1,31 @@
+
+<%= form_with(model: @round, url: (@round.new_record? ? tournament_rounds_path(tournament_id:@tournament.id): round_path(id:@round.id)), local: true) do |form| %>
+
+  <% if round.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(round.errors.count, "error") %> prohibited this round from being saved:</h2>
+
+      <ul>
+      <% round.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :number %>
+    <%= form.number_field :number %>
+  </div>
+
+  <div class="field">
+    <%= form.hidden_field :tournament_id %>
+    <%= form.label :tournament_id %> |
+    <%= @tournament.name %>
+  </div>
+
+  <div class="actions">
+  <%= form.submit ( form.object.new_record? ? "Create" : "Update"), class: 'btn btn-primary'%>
+  </div>
+
+<% end %>

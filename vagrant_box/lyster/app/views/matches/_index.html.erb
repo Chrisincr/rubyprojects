@@ -1,0 +1,36 @@
+
+
+<h1>Matches</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Round</th>
+      <th>Contender</th>
+      <th>Challenger</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @matches.each do |match| %>
+      <tr>
+        <td><%= match.round.number %></td>
+        <% if match.points.count > 0 %>
+        <td><%= match.points.first.contender.user.name %></td>
+        <td><%= match.points.first.challenger.user.name %></td>
+        <% else %>
+          <td> define contender </td>
+          <td> define challenger </td>
+        <% end %>
+        <td><%= link_to 'Show', match_path(id:match.id), class: 'btn btn-primary'  %></td>
+        <td><%= link_to 'Edit', edit_match_path(id:match.id), class: 'btn btn-primary'  %></td>
+        <td><%= link_to 'Destroy', match_path(id:match.id), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'  %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Match', new_round_match_path(round_id:@round.id), class: 'btn btn-primary'  %>

@@ -1,0 +1,28 @@
+<%= form_with(model: @combatant, url: (@combatant.new_record? ? tournament_combatants_path(tournament_id:@tournament.id): combatant_path(id:@combatant.id)), local: true) do |form| %>
+  <% if combatant.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(combatant.errors.count, "error") %> prohibited this combatant from being saved:</h2>
+
+      <ul>
+      <% combatant.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.select :user_id, @users %>
+  </div>
+
+  <div class="field">
+    <%= form.hidden_field :tournament_id %>
+    <%= form.label :tournament_id %> |
+    <%= @tournament.name %>
+  </div>
+
+  <div class="actions">
+  <%= form.submit ( form.object.new_record? ? "Create" : "Update"), class: 'btn btn-primary'%>
+  </div>
+<% end %>

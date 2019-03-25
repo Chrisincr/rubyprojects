@@ -1,0 +1,12 @@
+<p>
+  <strong>User:</strong>
+  <%= @combatant.user.name %>
+</p>
+
+<p>
+  <strong>Tournament:</strong>
+  <%= @combatant.tournament.name %>
+</p>
+
+<%= link_to 'Edit', edit_combatant_path(@combatant), class: 'btn btn-primary'  %> |
+<%= link_to 'Back', tournament_path(id:@combatant.tournament_id), class: 'btn btn-primary'  %>

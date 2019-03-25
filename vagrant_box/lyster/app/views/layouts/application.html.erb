@@ -9,7 +9,36 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <%= yield %>
+  <body >
+    <div class ="bg-light container">
+      <div class="col-md-12">
+      <nav class="navbar navbar-light">
+        <div class = 'container'>
+
+          <div class = 'col-md'>
+          <%= link_to root_path, class: "navbar-brand" do %>
+          <%= image_tag "lyster_logo.png"%>
+          <% end %>
+          </div>
+
+          <div class = 'col-md'>
+            <div class = 'row'>
+            <h1>Lyster</h1>
+            </div>
+            <div class ='row'>
+            <%= link_to 'Tournaments', tournaments_path , class: 'btn btn-primary'%>
+            <%= link_to 'Particpants', users_path , class: 'btn btn-primary'%>
+            </div>
+          </div>
+
+          <div class = 'col-md'>
+            <button>login</button>
+          </div>
+        </div>
+      </nav>
+      <p id="notice"><%= notice %></p>
+        <%= yield %>
+      </div>
+    </div>
   </body>
 </html>
